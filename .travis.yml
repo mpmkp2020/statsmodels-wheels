@@ -2,12 +2,13 @@ env:
   global:
       - REPO_DIR=statsmodels
       - BUILD_COMMIT=master
+      - PLAT=x86_64
       - UNICODE_WIDTH=32
-      - NP_BUILD_DEP="numpy==1.19.4"
-      - NP_TEST_DEP="numpy==1.19.4"
-      - SP_BUILD_DEP="scipy==1.5.3"
-      - SP_TEST_DEP="scipy==1.5.3"
-      - PANDAS_DEP="pandas==1.1.4"
+      - NP_BUILD_DEP="numpy==1.18.5"
+      - NP_TEST_DEP="numpy==1.18.5"
+      - SP_BUILD_DEP="scipy==1.5.2"
+      - SP_TEST_DEP="scipy==1.5.2"
+      - PANDAS_DEP="pandas==1.0.5"
       - ANACONDA_USERNAME=statsmodels
       # Following generated with
       - DAILY_COMMIT=master
@@ -22,20 +23,33 @@ services: docker
 matrix:
   include:
     - os: linux
-      arch: arm64
       env:
         - MB_PYTHON_VERSION=3.6
     - os: linux
-      arch: arm64
+      env:
+        - MB_PYTHON_VERSION=3.6
+        - PLAT=i686
+    - os: linux
       env:
         - MB_PYTHON_VERSION=3.7
         - PANDAS_DEP=pandas
     - os: linux
-      arch: arm64
+      env:
+        - MB_PYTHON_VERSION=3.7
+        - PLAT=i686
+        - PANDAS_DEP=pandas
+    - os: linux
       env:
         - MB_PYTHON_VERSION=3.8
-        - NP_BUILD_DEP=numpy==1.19.4
-        - NP_TEST_DEP=numpy==1.19.4
+        - NP_BUILD_DEP=numpy==1.17.5
+        - NP_TEST_DEP=numpy==1.17.5
+        - PANDAS_DEP=pandas
+    - os: linux
+      env:
+        - MB_PYTHON_VERSION=3.8
+        - PLAT=i686
+        - NP_BUILD_DEP=numpy==1.17.5
+        - NP_TEST_DEP=numpy==1.17.5
         - PANDAS_DEP=pandas
     - os: osx
       language: generic
@@ -50,8 +64,8 @@ matrix:
       language: generic
       env:
         - MB_PYTHON_VERSION=3.8
-        - NP_BUILD_DEP=numpy==1.19.4
-        - NP_TEST_DEP=numpy==1.19.4
+        - NP_BUILD_DEP=numpy==1.17.5
+        - NP_TEST_DEP=numpy==1.17.5
         - PANDAS_DEP=pandas
 
 before_install:
