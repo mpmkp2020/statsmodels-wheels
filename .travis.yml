@@ -26,7 +26,10 @@ matrix:
       env:
         - MB_PYTHON_VERSION=3.6
     - os: linux
-      arch: arm64
+      arch: arm64-graviton2
+      dist: local
+      virt: lxd
+      group: edge
       env:
         - MB_PYTHON_VERSION=3.7
         - PLAT=aarch64
